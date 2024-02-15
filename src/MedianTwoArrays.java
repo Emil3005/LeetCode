@@ -38,15 +38,14 @@ Constraints:
 
 public class MedianTwoArrays {
 
-    private static int[] nums1= {1,3};
-    private static int[] nums2= {2};
+    private static int[] nums1= {1,2};
+    private static int[] nums2= {3,4};
     private static int[] result = new int[nums1.length+nums2.length];
 
     public static void main(String[] args) {
-        
         mergeArrays();
-        printArray(result);
-        //System.out.println(detect_Median(result));
+        //printArray(result);
+        System.out.println(detect_Median(result));
     }
 
     public static void mergeArrays(){
@@ -63,7 +62,7 @@ public class MedianTwoArrays {
             }
         }
     }
-
+    /*
     public static int find_biggest_number(int[] nums){
         int biggest = 0;
         for(int i=0;i<nums.length;i++){
@@ -73,12 +72,15 @@ public class MedianTwoArrays {
         }
         return biggest;
     }
-
+     */
+    
     public static int[] find_smallest_number_pair(int[] nums){
         int[] smallest_number_pair = {10,0}; // here we need to call find_biggest_number
         for(int i=0;i<nums.length;i++){
             if(nums[i]<smallest_number_pair[0] && nums[i] != -1){
                 smallest_number_pair[0] = nums[i];
+                smallest_number_pair[1] = i;
+                
             }
         }
         return smallest_number_pair;
@@ -92,7 +94,9 @@ public class MedianTwoArrays {
 
     public static double detect_Median(int[] nums){
         if (nums.length % 2 ==0){
-            return (nums[nums.length/2] + nums[nums.length/2 +1]) / 2;
+            double val1 = nums[nums.length/2 -1];
+            double val2 = nums[nums.length/2];
+            return (val1 + val2) / 2;
         }else{
             return nums[nums.length/2];
         }
